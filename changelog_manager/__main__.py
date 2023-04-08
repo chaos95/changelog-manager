@@ -1,3 +1,4 @@
+import sys
 import click
 from changelog_manager.utils import ChangelogManager
 from changelog_manager._version import __version__
@@ -79,6 +80,30 @@ def add(change_type, change_description, changelog):
     changelog_manager = ChangelogManager(changelog)
     changelog_manager.add(change_type, change_description)
     changelog_manager.commit()
+
+
+@cli.command()
+@click.option(
+    "--changelog",
+    help="changelog file, default to CHANGELOG.md",
+    default="CHANGELOG.md",
+)
+@click.option(
+    "--force",
+    help="overwrite existing changelog file",
+    is_flag=True,
+    default=False,
+)
+def init(changelog: str, force: bool):
+    """
+    Create a new changelog file. ex:
+    changelog-manager init
+    """
+    try:
+        ChangelogManager.init(changelog, force=force)
+    except FileExistsError:
+        print(f"{changelog} already exists")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
