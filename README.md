@@ -20,12 +20,13 @@ Usage: changelog-manager [OPTIONS] COMMAND [ARGS]...
 
 Options:
   --version  Show the version and exit.
-  --help  Show this message and exit.
+  --help     Show this message and exit.
 
 Commands:
   add      Add a new changelog entry.
   current  Get current version from changelog
   display  display changes according to changelog
+  init     Create a new changelog file.
   release  Release unrealeased items in changelog
   suggest  Suggest future version from changelog
 ```
